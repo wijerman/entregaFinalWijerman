@@ -20,7 +20,7 @@ function validarForm() {
     const datos = { nombre, apellido, edad };
 
     // Enviar los datos del formulario al servidor utilizando Fetch API
-    fetch('URL_DE_TU_API', {
+    fetch('', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(datos)
@@ -60,7 +60,7 @@ function mostrarConfirmacion(datos) {
             // Si el usuario confirma, guardar los datos en el LocalStorage
             guardarDatosLS(datos);
             // Mostrar mensaje de éxito y redirigir al usuario a una página de inicio
-            mostrarMensajeExito("Tus datos fueron guardados correctamente. Bienvenido a LrKinesio", "pages/home.html");
+            mostrarMensajeExito("Tus datos fueron guardados correctamente. Bienvenido a LrKinesio");
         } else {
             // Si el usuario no confirma, eliminar los datos del LocalStorage y mostrar un mensaje de error
             eliminarDatosLS();
@@ -87,7 +87,7 @@ function mostrarMensajeExito(mensaje, url) {
         text: mensaje,
         icon: "success"
     }).then(() => {
-        window.location.href = url;
+        window.location.href ="./Home.html";
     });
     
 }
