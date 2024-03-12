@@ -50,7 +50,7 @@ function mostrarConfirmacion(datos) {
 // Función para redirigir al usuario a la página de GitHub donde está Home.html
  function redirigirAHomeEnGitHub() {
 //    // URL de la página Home.html en tu repositorio de GitHub
-    const githubUrl = "https://raw.githubusercontent.com/wijerman/entregaFinalWijerman/master/asset/pages/Home.html";
+    const githubUrl = "https://wijerman.github.io/entregaFinalWijerman/asset/css/estilo.css";
 
    //Realizar una solicitud de Fetch para obtener el contenido de la página Home.html
    fetch(githubUrl)
@@ -67,13 +67,13 @@ function mostrarConfirmacion(datos) {
 console.log(URL);
 const newWindow = window.open(url);
 //Ensure that the CSS file is loaded after the HTML is completely loaded
-    newWindow.addEventListener('DOMContentLoaded', () => {
-      const link = newWindow.document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = '../css/estilo.css';
-      newWindow.document.head.appendChild(link);
-    });
+    // newWindow.addEventListener('DOMContentLoaded', () => {
+    //   const link = newWindow.document.createElement('link');
+    //   link.rel = 'stylesheet';
+    //   link.type = 'text/css';
+    //   link.href = '../css/estilo.css';
+    //   newWindow.document.head.appendChild(link);
+    // });
     //Redirigir al usuario a la página Home.html
     // window.location.href = .Home.html; 
    })
