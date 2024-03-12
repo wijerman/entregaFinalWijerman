@@ -1,7 +1,7 @@
 // Definición del array de objetos con la información de cada tarjeta
 var tarjetas = [
-    { imagen: "https://wijerman.github.io/entregaFinalWijerman/imagenes/esccr.jpg", enlace: "./index2.html", textoBoton: "Kinesiologia" },
-    { imagen: "/asset/imagenes/descarga.jpg", enlace: "./index3.html", textoBoton: "Quiropraxia" },
+    { imagen: "../imagenes/esccr.jpg", enlace: "./index2.html", textoBoton: "Kinesiologia" },
+    { imagen: "../imagenes/descarga.jpg", enlace: "./index3.html", textoBoton: "Quiropraxia" },
     { imagen: "../imagenes/images.jpg", enlace: "./index4.html", textoBoton: "Osteopatia" }
 ];
 
