@@ -48,9 +48,9 @@ function mostrarConfirmacion(datos) {
 }
 
 // Función para redirigir al usuario a la página de GitHub donde está Home.html
-function redirigirAHomeEnGitHub() {
-   // URL de la página Home.html en tu repositorio de GitHub
-   const githubUrl = "https://raw.githubusercontent.com/wijerman/entregaFinalWijerman/master/asset/pages/Home.html";
+ function redirigirAHomeEnGitHub() {
+//    // URL de la página Home.html en tu repositorio de GitHub
+    const githubUrl = "https://raw.githubusercontent.com/wijerman/entregaFinalWijerman/master/asset/pages/Home.html";
 
    //Realizar una solicitud de Fetch para obtener el contenido de la página Home.html
    fetch(githubUrl)
