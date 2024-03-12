@@ -19,29 +19,10 @@ function validarForm() {
     // Crear objeto con los datos del formulario
     const datos = { nombre, apellido, edad };
 
-    // Enviar los datos del formulario al servidor utilizando Fetch API
-    fetch('', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(datos)
-    })
-    .then(response => {
-        // Verificar si la respuesta es correcta
-        if (!response.ok) {
-            throw new Error('Error al enviar los datos.');
-        }
-        return response.json();
-    })
-    .then(() => {
-        // Mostrar un mensaje de confirmación al usuario
-        mostrarConfirmacion(datos);
-    })
-    .catch(() => {
-        // Mostrar mensaje de error si falla el envío de datos
-        mostrarMensajeError("Error al enviar los datos. Por favor, intenta nuevamente más tarde.");
-    });
+    // Mostrar mensaje de confirmación
+    mostrarConfirmacion(datos);
 
-    return false;
+    return false; // Prevent form submission
 }
 
 // Función para mostrar mensaje de confirmación con SweetAlert
@@ -57,16 +38,52 @@ function mostrarConfirmacion(datos) {
         cancelButtonText: "No"
     }).then((result) => {
         if (result.isConfirmed) {
-            // Si el usuario confirma, guardar los datos en el LocalStorage
-            guardarDatosLS(datos);
-            // Mostrar mensaje de éxito y redirigir al usuario a una página de inicio
-            mostrarMensajeExito("Tus datos fueron guardados correctamente. Bienvenido a LrKinesio");
+            // Si el usuario confirma, redirigir al usuario a la página de GitHub donde está Home.html
+            redirigirAHomeEnGitHub();
         } else {
-            // Si el usuario no confirma, eliminar los datos del LocalStorage y mostrar un mensaje de error
-            eliminarDatosLS();
+            // Si el usuario no confirma, mostrar mensaje de error
             mostrarMensajeError("Tus datos ingresados recientemente fueron eliminados, por favor vuelve a completar el formulario correctamente para poder ingresar!");
         }
     });
+}
+
+// Función para redirigir al usuario a la página de GitHub donde está Home.html
+function redirigirAHomeEnGitHub() {
+   // URL de la página Home.html en tu repositorio de GitHub
+   const githubUrl = "https://raw.githubusercontent.com/wijerman/entregaFinalWijerman/master/asset/pages/Home.html";
+
+   //Realizar una solicitud de Fetch para obtener el contenido de la página Home.html
+   fetch(githubUrl)
+   .then(response => {
+    if (!response.ok) {
+        throw new Error('No se pudo obtener la página Home.html');
+    }
+    return response.text();
+   })
+   .then(html => {
+    //Crear un objeto tipo blob con el contenido HTML obtenido
+    const blob = new Blob([html], {type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+console.log(URL);
+const newWindow = window.open(url);
+//Ensure that the CSS file is loaded after the HTML is completely loaded
+    newWindow.addEventListener('DOMContentLoaded', () => {
+      const link = newWindow.document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = '../css/estilo.css';
+      newWindow.document.head.appendChild(link);
+    });
+    //Redirigir al usuario a la página Home.html
+    // window.location.href = .Home.html; 
+   })
+
+   .catch(error => {
+    //Manejar errores de solicitud Fetch
+    console.error('Error al obtener la página Home.html', error);
+    mostrarMensajeError("Error al obtener la página Home.html. Por favor, intenta nuevamente más tarde.");
+   });
+
 }
 
 // Función para mostrar mensaje de error con SweetAlert
@@ -78,26 +95,4 @@ function mostrarMensajeError(mensaje) {
         showConfirmButton: false,
         timer: 5000
     });
-}
-
-// Función para mostrar mensaje de éxito con SweetAlert y redirigir a una URL
-function mostrarMensajeExito(mensaje, url) {
-    Swal.fire({
-        title: "Guardado!",
-        text: mensaje,
-        icon: "success"
-    }).then(() => {
-        window.location.href ="./Home.html";
-    });
-    
-}
-
-// Función para guardar los datos en el LocalStorage
-function guardarDatosLS(datos) {
-    localStorage.setItem("datosForm", JSON.stringify(datos));
-}
-
-// Función para eliminar los datos del LocalStorage
-function eliminarDatosLS() {
-    localStorage.removeItem("datosForm");
 }
