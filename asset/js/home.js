@@ -48,3 +48,39 @@ tarjetas.forEach(function(tarjeta) {
 
 // Agregar el contenedor padre al cuerpo del documento HTML
 document.body.appendChild(contenedorPadre);
+
+function recuperarInformacionDeGithub() {
+    //    // URL de la página Home.html en tu repositorio de GitHub
+        const githubUrl = "https://raw.githubusercontent.com/wijerman/javascriptHome/master/jshome.json";
+    
+       //Realizar una solicitud de Fetch para obtener el contenido de la página Home.html
+       fetch(githubUrl)
+       .then(response => {
+       
+    
+    return response.json()
+       })
+       .then(data => {
+      console.log(data,"esta es la data que llega de github");
+       })
+    
+       .catch(error => {
+        //Manejar errores de solicitud Fetch
+        console.error('Error al obtener la página Home.html', error);
+        mostrarMensajeError("Error al obtener la página Home.html. Por favor, intenta nuevamente más tarde.");
+       });
+    
+    }
+
+    // Función para mostrar mensaje de error con SweetAlert
+function mostrarMensajeError(mensaje) {
+    Swal.fire({
+        position: "top",
+        icon: "error",
+        text: mensaje,
+        showConfirmButton: false,
+        timer: 5000
+    });
+}
+
+recuperarInformacionDeGithub();
