@@ -50,7 +50,7 @@ function mostrarConfirmacion(datos) {
     }).then((result) => {
         if (result.isConfirmed) {
             // Si el usuario confirma, redirigir al usuario a la página de GitHub donde está Home.html
-            window.location.href = "/asset/pages/home.html";
+            window.location.href = "./asset/pages/home.html";
         } else {
             // Si el usuario no confirma, mostrar mensaje de error
             mostrarMensajeError("Tus datos ingresados recientemente fueron eliminados, por favor vuelve a completar el formulario correctamente para poder ingresar!");
